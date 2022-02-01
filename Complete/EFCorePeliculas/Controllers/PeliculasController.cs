@@ -10,7 +10,7 @@ namespace EFCorePeliculas.Controllers
 {
     [ApiController]
     [Route("api/peliculas")]
-    public class PeliculasController: ControllerBase
+    public class PeliculasController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
@@ -61,6 +61,7 @@ namespace EFCorePeliculas.Controllers
         public async Task<ActionResult<List<PeliculaDTO>>> Filtrar(
                 [FromQuery] PeliculasFiltroDTO peliculasFiltroDTO)
         {
+            // Devuelve un IQueryable dond epodemos ir armando paso a paso el query
             var peliculasQueryable = context.Peliculas.AsQueryable();
 
             if (!string.IsNullOrEmpty(peliculasFiltroDTO.Titulo))
@@ -81,7 +82,7 @@ namespace EFCorePeliculas.Controllers
 
             if (peliculasFiltroDTO.GeneroId != 0)
             {
-                peliculasQueryable = peliculasQueryable.Where(p => 
+                peliculasQueryable = peliculasQueryable.Where(p =>
                     p.Generos.Select(g => g.Identificador)
                             .Contains(peliculasFiltroDTO.GeneroId));
             }

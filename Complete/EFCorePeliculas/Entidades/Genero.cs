@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCorePeliculas.Entidades
 {
-    public class Genero: EntidadAuditable
+    // crear un indice
+    //  [Index(nameof(Nombre), IsUnique = true)]
+    public class Genero : EntidadAuditable
     {
         public int Identificador { get; set; }
         [ConcurrencyCheck]

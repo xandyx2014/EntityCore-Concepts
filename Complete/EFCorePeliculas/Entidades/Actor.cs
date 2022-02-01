@@ -6,7 +6,8 @@ namespace EFCorePeliculas.Entidades
     {
         public int Id { get; set; }
         private string _nombre;
-        public string Nombre {
+        public string Nombre
+        {
             get
             {
                 return _nombre;
@@ -17,13 +18,14 @@ namespace EFCorePeliculas.Entidades
                         value.Split(' ')
                         .Select(x => x[0].ToString().ToUpper() + x.Substring(1).ToLower()).ToArray());
             }
-        
+
         }
         public string Biografia { get; set; }
         //[Column(TypeName = "Date")]
         public DateTime? FechaNacimiento { get; set; }
         public HashSet<PeliculaActor> PeliculasActores { get; set; }
         public string FotoURL { get; set; }
+        // no mapea la propiedad en la base de datos
         [NotMapped]
         public int? Edad
         {

@@ -23,11 +23,13 @@ namespace EFCorePeliculas.Controllers
         [HttpGet]
         public async Task<IEnumerable<Genero>> Get()
         {
+            // agrega el objecto proximo para agregar
             context.Logs.Add(new Log
             {
                 Id = Guid.NewGuid(),
                 Mensaje = "Ejecutando el método GenerosController.Get"
             });
+            // aqui se guarda el dato para guardar
             await context.SaveChangesAsync();
             // Por defecto esta como asNotTracking que evita la edicion de los campos traidos
             // Para evitar este compartimiento podemos llamar el Metodo AsTracking()

@@ -13,9 +13,11 @@ namespace EFCorePeliculas.Entidades.Configuraciones
 
             builder.Property(prop => prop.TipoSalaDeCine)
                 .HasDefaultValue(TipoSalaDeCine.DosDimensiones)
+                // conversacion a un tipo
                 .HasConversion<string>();
 
             builder.Property(prop => prop.Moneda)
+                // Conversasciones personalziadas
                 .HasConversion<MonedaASimboloConverter>();
         }
     }

@@ -92,7 +92,8 @@ namespace EFCorePeliculas
 
             //modelBuilder.Entity<Log>().Property(l => l.Id).ValueGeneratedNever();
             //modelBuilder.Ignore<Direccion>();
-
+            // Modelo sin Keys
+            // sirve para centralizar consultas
             modelBuilder.Entity<CineSinUbicacion>()
                 .HasNoKey().ToSqlQuery("Select Id, Nombre FROM Cines").ToView(null);
 

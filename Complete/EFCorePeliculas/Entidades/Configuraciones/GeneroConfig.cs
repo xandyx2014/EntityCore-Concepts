@@ -22,9 +22,9 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                 .IsRequired();
 
             builder.HasQueryFilter(g => !g.EstaBorrado);
-
+            // es unico si EstaBorrado = 'false'
             builder.HasIndex(g => g.Nombre).IsUnique().HasFilter("EstaBorrado = 'false'");
-
+            // 
             builder.Property<DateTime>("FechaCreacion").HasDefaultValueSql("GetDate()").HasColumnType("datetime2");
         }
     }
