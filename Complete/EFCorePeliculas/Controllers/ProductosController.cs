@@ -24,12 +24,14 @@ namespace EFCorePeliculas.Controllers
         [HttpGet("Merchs")]
         public async Task<ActionResult<IEnumerable<Merchandising>>> GetMerchs()
         {
+            // consigue una tabla heredada que esta tiene su propia Tabla
             return await context.Set<Merchandising>().ToListAsync();
         }
 
         [HttpGet("Alquileres")]
         public async Task<ActionResult<IEnumerable<PeliculaAlquilable>>> GetAlquileres()
         {
+            // consigue una tabla heredada que esta tiene su propia Tabla
             return await context.Set<PeliculaAlquilable>().ToListAsync();
         }
     }

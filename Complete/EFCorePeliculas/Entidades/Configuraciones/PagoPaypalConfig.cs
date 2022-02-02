@@ -26,7 +26,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                 TipoPago = TipoPago.Paypal,
                 CorreoElectronico = "claudia@hotmail.com"
             };
-
+            // adicionar data seed
             builder.HasData(pago1, pago2);
 
         }

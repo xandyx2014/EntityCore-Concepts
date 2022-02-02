@@ -1,6 +1,7 @@
 ﻿namespace EFCorePeliculas.Entidades
 {
-    public class Merchandising: Producto
+    // hereda de Producto
+    public class Merchandising : Producto
     {
         public bool DisponibleEnInventario { get; set; }
         public double Peso { get; set; }

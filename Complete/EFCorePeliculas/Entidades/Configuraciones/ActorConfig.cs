@@ -15,7 +15,8 @@ namespace EFCorePeliculas.Entidades.Configuraciones
 
             //builder.Ignore(a => a.Edad);
             //builder.Ignore(a => a.Direccion);
-
+            // Configurar las Entidades de propiedad 
+            // Configurarmos el nombre por default 
             builder.OwnsOne(a => a.DireccionHogar, dir =>
             {
                 dir.Property(d => d.Calle).HasColumnName("Calle");

@@ -1,6 +1,7 @@
 ﻿namespace EFCorePeliculas.Entidades
 {
-    public class PagoPaypal: Pago
+    // pagoPaypal hereda de pago
+    public class PagoPaypal : Pago
     {
         public string CorreoElectronico { get; set; }
     }

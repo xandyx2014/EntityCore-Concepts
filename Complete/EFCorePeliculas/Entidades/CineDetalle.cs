@@ -2,6 +2,7 @@
 
 namespace EFCorePeliculas.Entidades
 {
+    // Divisiion de tablas
     public class CineDetalle
     {
         public int Id { get; set; }

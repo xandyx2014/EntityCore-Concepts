@@ -6,6 +6,7 @@ namespace EFCorePeliculas.Entidades
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        // InverseProperty para dos relaciones con una misma clase
         [InverseProperty("Emisor")]
         public List<Mensaje> MensajesEnviados { get; set; }
         [InverseProperty("Receptor")]

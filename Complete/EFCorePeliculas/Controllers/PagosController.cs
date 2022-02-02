@@ -24,12 +24,16 @@ namespace EFCorePeliculas.Controllers
         [HttpGet("tarjetas")]
         public async Task<ActionResult<IEnumerable<PagoTarjeta>>> GetTarjetas()
         {
+            // sirve para llamar el pagos de la clase heredada 
+            // se utiliza el oftype yta que estamos utilizando un discrimandor en apifluent
             return await context.Pagos.OfType<PagoTarjeta>().ToListAsync();
         }
 
         [HttpGet("paypal")]
         public async Task<ActionResult<IEnumerable<PagoPaypal>>> GetPaypal()
         {
+            // sirve para llamar el pagos de la clase heredada 
+            // se utiliza el oftype yta que estamos utilizando un discrimandor en apifluent
             return await context.Pagos.OfType<PagoPaypal>().ToListAsync();
         }
     }

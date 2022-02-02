@@ -14,7 +14,8 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.Property(prop => prop.PosterURL)
                 .HasMaxLength(500)
                 .IsUnicode(false);
-
+            // En este no se esta utilizando una tabla intermediaria SkipNavigation
+            // Pelicula tiene Muchos Generos, 1 Genero tiene muchas Peliculas
             //builder.HasMany(p => p.Generos)
             //    .WithMany(g => g.Peliculas)
             //    .UsingEntity(j => 
