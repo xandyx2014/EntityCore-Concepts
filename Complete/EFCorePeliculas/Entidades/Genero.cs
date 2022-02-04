@@ -9,6 +9,7 @@ namespace EFCorePeliculas.Entidades
     public class Genero : EntidadAuditable
     {
         public int Identificador { get; set; }
+        // Checka la concurrencia cuando el campo es editado al mismo Tiempo
         [ConcurrencyCheck]
         public string Nombre { get; set; }
         public bool EstaBorrado { get; set; }

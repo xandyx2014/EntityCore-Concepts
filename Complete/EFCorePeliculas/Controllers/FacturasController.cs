@@ -62,7 +62,7 @@ namespace EFCorePeliculas.Controllers
 
                 return Ok();
             }
-            catch(DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException ex)
             {
                 var entry = ex.Entries.Single();
 
@@ -91,7 +91,7 @@ namespace EFCorePeliculas.Controllers
 
                 return BadRequest("El registro no pudo ser actualizado pues fue modificado por otra persona");
             }
-           
+
         }
 
 
@@ -113,6 +113,7 @@ namespace EFCorePeliculas.Controllers
         [HttpPost]
         public async Task<ActionResult> Post()
         {
+            // transaccion con BeginTransaccion
             using var transaccion = await context.Database.BeginTransactionAsync();
             try
             {
@@ -126,21 +127,23 @@ namespace EFCorePeliculas.Controllers
 
                 throw new ApplicationException("Esto es una prueba");
 
-                var facturaDetalle = new List<FacturaDetalle>()
-                        {
-                            new FacturaDetalle()
-                            {
-                                Producto = "Producto A",
-                                Precio = 123,
-                                FacturaId = factura.Id
-                            },
-                            new FacturaDetalle()
-                            {
-                                Producto = "Producto B",
-                                Precio = 456,
-                                FacturaId = factura.Id
-                            }
-                        };
+#pragma warning disable CS0162 // Unreachable code detected
+                List<FacturaDetalle> facturaDetalle = new()
+#pragma warning restore CS0162 // Unreachable code detected
+                {
+                    new FacturaDetalle()
+                    {
+                        Producto = "Producto A",
+                        Precio = 123,
+                        FacturaId = factura.Id
+                    },
+                    new FacturaDetalle()
+                    {
+                        Producto = "Producto B",
+                        Precio = 456,
+                        FacturaId = factura.Id
+                    }
+                };
 
                 context.AddRange(facturaDetalle);
                 await context.SaveChangesAsync();

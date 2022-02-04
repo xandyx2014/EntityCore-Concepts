@@ -11,8 +11,13 @@ namespace EFCorePeliculas
 {
     public class ApplicationDbContext : DbContext
     {
+        // PROPIEDADES
+        // DataBase sirve para hacer servicios de sql
+        // ChangeTracker sirve para el servidor de cambios
+        // Model
+        // ContextId
         private readonly IServicioUsuario servicioUsuario;
-
+        // sirve para instansciar el db context, por si no coremos la inyeccion de dependencias usar
         public ApplicationDbContext()
         {
 
@@ -26,6 +31,7 @@ namespace EFCorePeliculas
             this.servicioUsuario = servicioUsuario;
             if (eventosDbContext is not null)
             {
+                // agregar los eventos del DBContext
                 //ChangeTracker.Tracked += eventosDbContext.ManejarTracked;
                 //ChangeTracker.StateChanged += eventosDbContext.ManejarStateChange;
                 SavingChanges += eventosDbContext.ManejarSavingChanges;
@@ -39,7 +45,7 @@ namespace EFCorePeliculas
             ProcesarSalvado();
             return base.SaveChangesAsync(cancellationToken);
         }
-
+        // sirve para guardar  datos de la entidades de hereden de EntidadAuditable
         private void ProcesarSalvado()
         {
             foreach (var item in ChangeTracker.Entries().Where(e => e.State == EntityState.Added
@@ -58,9 +64,11 @@ namespace EFCorePeliculas
                 item.Property(nameof(entidad.UsuarioCreacion)).IsModified = false;
             }
         }
-
+        // Configurando el Db context 
+        // se puede pasar el nombre de DefaultConnection de appsettings.json
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // verifica si esta la configuracion 
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("name=DefaultConnection", opciones =>
@@ -87,7 +95,7 @@ namespace EFCorePeliculas
             SeedingFacturas.Seed(modelBuilder);
 
             Escalares.RegistrarFunciones(modelBuilder);
-
+            // Agregar una secuencia al Propiedad de NUmeroFactura del schema factura
             modelBuilder.HasSequence<int>("NumeroFactura", "factura");
 
             //modelBuilder.Entity<Log>().Property(l => l.Id).ValueGeneratedNever();

@@ -21,7 +21,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.Property("Hasta").HasColumnType("datetime2");
 
             builder.HasMany(typeof(FacturaDetalle)).WithOne();
-
+            // Agregar el campo como una Secuencia
             builder.Property(f => f.NumeroFactura)
                 .HasDefaultValueSql("NEXT VALUE FOR factura.NumeroFactura");
 

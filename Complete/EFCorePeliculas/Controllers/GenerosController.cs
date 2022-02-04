@@ -95,7 +95,7 @@ namespace EFCorePeliculas.Controllers
             {
                 return BadRequest("Ya existe un género con ese nombre: " + genero.Nombre);
             }
-
+            // Ejecutar un procedimiento almacenado 
             var outputId = new SqlParameter();
             outputId.ParameterName = "@id";
             outputId.SqlDbType = System.Data.SqlDbType.Int;
@@ -113,7 +113,10 @@ namespace EFCorePeliculas.Controllers
         public async Task<ActionResult<Genero>> Get(int id)
         {
             var genero = await context.Generos.AsTracking().FirstOrDefaultAsync(g => g.Identificador == id);
-
+            // FromSqlRaw Sql Directramente
+            // var generoSql = await context.Generos.FromSqlRaw("SELECT * FROM Generos WHERE Identificador = {0}", id).FirstOrDefaultAsync();
+            // FromSqlInterpolated se puede utilizar interporlacion de string que de la misma manera nos proteje de SQL INYECTION
+            // var generoSql = await context.Generos.FromSqlInterpolated($"SELECT * FROM Generos WHERE Identificador = {id}").FirstOrDefaultAsync();
             if (genero is null)
             {
                 return NotFound();
@@ -229,8 +232,9 @@ namespace EFCorePeliculas.Controllers
             }
 
             //context.Add(genero);
+            // se cambia el estado manualmente 
             //context.Entry(genero).State = EntityState.Added;
-
+            // Utilizando Sentencia Arbitrarias
             await context.Database.ExecuteSqlInterpolatedAsync($@"
             INSERT INTO Generos(Nombre)
             VALUES({genero.Nombre})");
@@ -252,7 +256,11 @@ namespace EFCorePeliculas.Controllers
         public async Task<ActionResult> Put(GeneroActualizacionDTO generoActualizacionDTO)
         {
             var genero = mapper.Map<Genero>(generoActualizacionDTO);
+
             context.Update(genero);
+            // se dice que solo La propiedad nombre sera modificado
+            //context.Entry(genero).Property(g => g.Nombre).IsModified = true;
+            // 
             context.Entry(genero).Property(g => g.Nombre)
                     .OriginalValue = generoActualizacionDTO.Nombre_Original;
             await context.SaveChangesAsync();

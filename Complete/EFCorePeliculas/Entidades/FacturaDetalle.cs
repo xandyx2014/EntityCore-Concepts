@@ -7,10 +7,11 @@ namespace EFCorePeliculas.Entidades
         public int Id { get; set; }
         public int FacturaId { get; set; }
         public string Producto { get; set; }
-        [Precision(18,2)]
+        [Precision(18, 2)]
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
-        [Precision(18,2)]
+        [Precision(18, 2)]
+        // Columna calculada
         public decimal Total { get; set; }
     }
 }

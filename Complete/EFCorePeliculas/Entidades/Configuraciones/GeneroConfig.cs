@@ -7,12 +7,12 @@ namespace EFCorePeliculas.Entidades.Configuraciones
     {
         public void Configure(EntityTypeBuilder<Genero> builder)
         {
-
+            // se configura para que esta tabla se una tabla temporal
             builder.ToTable(name: "Generos", opciones =>
             {
                 opciones.IsTemporal();
             });
-
+            // estas dos columnas son necesarias para las tablas temporales
             builder.Property("PeriodStart").HasColumnType("datetime2");
             builder.Property("PeriodEnd").HasColumnType("datetime2");
 
