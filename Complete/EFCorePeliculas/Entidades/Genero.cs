@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace EFCorePeliculas.Entidades
 {
-    // crear un indice
+    // crear un indice de la DB
     //  [Index(nameof(Nombre), IsUnique = true)]
     public class Genero : EntidadAuditable
     {

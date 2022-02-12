@@ -21,7 +21,7 @@ namespace EFCorePeliculas.Entidades
 
         }
         public string Biografia { get; set; }
-        //[Column(TypeName = "Date")]
+        //[Column(TypeName = "Date")] configuracion del tipo de date como se guardara en la base de datos
         public DateTime? FechaNacimiento { get; set; }
         public HashSet<PeliculaActor> PeliculasActores { get; set; }
         public string FotoURL { get; set; }

@@ -80,6 +80,8 @@ namespace EFCorePeliculas
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {
+            // COnfiguracionamos la conveccion que cada que se utiliza en el modelo el campo DateTime se mapeara como date en 
+            // en la base de datos
             configurationBuilder.Properties<DateTime>().HaveColumnType("date");
         }
 

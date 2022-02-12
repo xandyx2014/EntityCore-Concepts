@@ -7,7 +7,10 @@ namespace EFCorePeliculas.Entidades.Configuraciones
     {
         public void Configure(EntityTypeBuilder<Genero> builder)
         {
-            // se configura para que esta tabla se una tabla temporal
+            // Configura el nombre de la tabla y el nombre de la esquema que se asiganara
+            //builder.ToTable(name: "Genero", schema: "Pelicula");
+            // se configura para que esta tabla se una tabla temporalde SQL server
+
             builder.ToTable(name: "Generos", opciones =>
             {
                 opciones.IsTemporal();

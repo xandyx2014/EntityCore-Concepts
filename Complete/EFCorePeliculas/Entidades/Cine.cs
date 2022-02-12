@@ -9,6 +9,8 @@ namespace EFCorePeliculas.Entidades
         public int Id { get; set; }
         private string _nombre;
         public string Nombre { get => _nombre; set => Set(value, ref _nombre); }
+        // Utilizamos una libreray NetTopolySuit para ayudarnos con las ubicaciones
+
         private Point _ubicacion;
         public Point Ubicacion { get => _ubicacion; set => Set(value, ref _ubicacion); }
         private CineOferta _cineOferta;

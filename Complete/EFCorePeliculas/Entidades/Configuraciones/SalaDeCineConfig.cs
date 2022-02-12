@@ -12,6 +12,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                 .HasPrecision(precision: 9, scale: 2);
 
             builder.Property(prop => prop.TipoSalaDeCine)
+                // Colocamos el default Value en este caso le colocamos un Enum
                 .HasDefaultValue(TipoSalaDeCine.DosDimensiones)
                 // conversacion a un tipo
                 .HasConversion<string>();

@@ -13,13 +13,13 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.Property(prop => prop.Nombre)
               .HasMaxLength(150)
               .IsRequired();
-            // configuracion de Uno a Uno con ApiFluent
+            // CONFIGURACION 1 A 1 con ApiFluent
             // Cine tiene 1 CineOferte y 1 CineOferta tiene 1 Cine
             builder.HasOne(c => c.CineOferta)
                 .WithOne()
                 // configuracion cual sera la llave foreign si no sigue la conveccion de .net core
                 .HasForeignKey<CineOferta>(co => co.CineId);
-            // configuracion 1 a muchos
+            // CONFIGURACIOn 1 a MUCHOS
             // 1 cine tiene muchas SalasDeCine y 1 SalasDeCine tiene 1 Cine
             builder.HasMany(c => c.SalasDeCine)
                 .WithOne(s => s.Cine)
