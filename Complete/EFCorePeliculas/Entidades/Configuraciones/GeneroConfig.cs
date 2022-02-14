@@ -23,7 +23,9 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.Property(prop => prop.Nombre)
                 .HasMaxLength(150)
                 .IsRequired();
-
+            // un filtro que se aplica a nivel modelo  y se ejecuta en todas las rutas
+            // Donde todas las conculstas se aplicara el
+            // Where(g => !g.EstaBorrado)
             builder.HasQueryFilter(g => !g.EstaBorrado);
             // es unico si EstaBorrado = 'false'
             builder.HasIndex(g => g.Nombre).IsUnique().HasFilter("EstaBorrado = 'false'");

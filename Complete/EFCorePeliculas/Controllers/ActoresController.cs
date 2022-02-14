@@ -52,7 +52,13 @@ namespace EFCorePeliculas.Controllers
             //await context.SaveChangesAsync();
             return Ok();
         }
-
+        // MODELO DESCONECTADO
+        // se usa un contexto distinto 
+        // con 1 dbcontext se carga
+        // con otro dbcontext se guarda
+        // DIFERENCIA ENTRE CONECTADO Y DESCONECTADO
+        // CONECTADO: save que valores cambiaron y solo acutaliza 
+        // DESCONECTADO: no sabe que valores cambiaron y intenta actualizar todo
         [HttpPut("desconectado/{id:int}")]
         public async Task<ActionResult> PutDesconectado(ActorCreacionDTO actorCreacionDTO, int id)
         {

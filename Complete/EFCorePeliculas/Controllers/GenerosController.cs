@@ -301,7 +301,7 @@ namespace EFCorePeliculas.Controllers
             return Ok();
         }
 
-
+        //  Actualizacion de registro en MODO CONECTADO (Modo conectado esta por default en EC)
         [HttpPost("agregar2")]
         public async Task<ActionResult> Agregar2(int id)
         {
@@ -316,7 +316,7 @@ namespace EFCorePeliculas.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-
+        //  Actualizacion de registro en MODO CONECTADO (Modo conectado esta por default en EC)
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -350,6 +350,8 @@ namespace EFCorePeliculas.Controllers
         [HttpPost("Restaurar/{id:int}")]
         public async Task<ActionResult> Restaurar(int id)
         {
+            // ignora las query puesta desde el modelo
+            // .IgnoreQueryFilters()
             var genero = await context.Generos.AsTracking()
                 .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(g => g.Identificador == id);
