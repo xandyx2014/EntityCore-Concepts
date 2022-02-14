@@ -19,11 +19,45 @@ namespace EFCorePeliculas.Controllers
             this.context = context;
             this.mapper = mapper;
         }
-
+        // Cargado Selectivo
+        [HttpGet("cargadoSelectivo/{id:int}")]
+        public async Task<ActionResult> GetSelectivo(int id)
+        {
+            var pelicula = await context.Peliculas.Select(p => new
+            {
+                Id = p.Id,
+                Titulo = p.Titulo,
+                Generos = p.Generos.OrderByDescending(g => g.Nombre).Select(g => g.Nombre).ToList(),
+                Cantidad = p.PeliculasActores.Count(),
+                Cines = p.SalasDeCine.Select(s => s.Id).Distinct().Count()
+            }).FirstOrDefaultAsync(p => p.Id == id);
+            if (pelicula is null)
+            {
+                return NotFound();
+            }
+            return Ok(pelicula);
+        }
+        [HttpGet("cargadoExplicito/{id:int}")]
+        public async Task<ActionResult<PeliculaDTO>> GetExplicito(int id)
+        {
+            // hacer varias consultas en database es mas costoto a nivel perfomarce en EF que tener una misma consulta
+            var pelicula = await context.Peliculas.AsTracking().FirstOrDefaultAsync();
+            var cantidadGeneros = await context.Entry(pelicula).Collection(p => p.Generos).Query().CountAsync();
+            // await context.Entry(pelicula).Collection(p => pelicula.Generos).LoadAsync();
+            if (pelicula is null)
+            {
+                return NotFound();
+            }
+            var peliculaDto = mapper.Map<PeliculaDTO>(pelicula);
+            return peliculaDto;
+        }
         [HttpGet]
         public async Task<IEnumerable<Genero>> Get()
         {
             // agrega el objecto proximo para agregar
+            // AsNOtTracking es una query de solo lectura y esto se vuelve mucho mas rapido porque solo es lectura
+            // se puede configurar el AsNotTracking en el app.cs y para poder hacer consultas para editar se tiene que llamar al metodo
+            // AsTracking
             context.Logs.Add(new Log
             {
                 Id = Guid.NewGuid(),
