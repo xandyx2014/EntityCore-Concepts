@@ -114,15 +114,15 @@ namespace EFCorePeliculas
 
             modelBuilder.HasDbFunction(() => PeliculaConConteos(0));
             // configura la conveccion de las propiedades de cualquier modelo
-            // si esta tiene URL se declaro como UNI CODE
+            // si la propriedad contiene el string "URL" se declaro como UNI CODE
             foreach (var tipoEntidad in modelBuilder.Model.GetEntityTypes())
             {
-                foreach (var propiedad in tipoEntidad.GetProperties())
+                foreach (var property in tipoEntidad.GetProperties())
                 {
-                    if (propiedad.ClrType == typeof(string) && propiedad.Name.Contains("URL", StringComparison.CurrentCultureIgnoreCase))
+                    if (property.ClrType == typeof(string) && property.Name.Contains("URL", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        propiedad.SetIsUnicode(false);
-                        propiedad.SetMaxLength(500);
+                        property.SetIsUnicode(false);
+                        property.SetMaxLength(500);
                     }
                 }
             }

@@ -10,7 +10,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.HasKey(prop =>
              new { prop.PeliculaId, prop.ActorId });
             // ======= [Con clase Intermediaria] ==============
-            // PeliculaACtor tiene 1 PeliculaAcctor y 1 PeliculaACtor tiene muchos Actor
+            // PeliculaActor tiene 1 Actor y 1 Actor tiene muchos PeliculaActores
             builder.HasOne(pa => pa.Actor)
                     .WithMany(a => a.PeliculasActores)
                     .HasForeignKey(pa => pa.ActorId);

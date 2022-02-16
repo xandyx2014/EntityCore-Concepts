@@ -15,7 +15,9 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                 .HasMaxLength(500)
                 // valor que habilita el Unicode
                 .IsUnicode(false);
+            // RELACION SIN TABLA INTERMEDIA MAPEADA
             // En este no se esta utilizando una tabla intermediaria SkipNavigation
+
             // Pelicula tiene Muchos Generos, 1 Genero tiene muchas Peliculas
             //builder.HasMany(p => p.Generos)
             //    .WithMany(g => g.Peliculas)
