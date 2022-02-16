@@ -99,18 +99,22 @@ namespace EFCorePeliculas
             Escalares.RegistrarFunciones(modelBuilder);
             // Agregar una secuencia al Propiedad de NUmeroFactura del schema factura
             modelBuilder.HasSequence<int>("NumeroFactura", "factura");
-
+            // Keyless ENTIDAD SIN LLAVE
+            // para centrailzar consultas
+            // Configuracion de log entity de la propueidad Id como ValueGeneraedNever con el apiFluent
             //modelBuilder.Entity<Log>().Property(l => l.Id).ValueGeneratedNever();
             //modelBuilder.Ignore<Direccion>();
             // Modelo sin Keys
             // sirve para centralizar consultas
+            // 
             modelBuilder.Entity<CineSinUbicacion>()
                 .HasNoKey().ToSqlQuery("Select Id, Nombre FROM Cines").ToView(null);
-
+            // 
             modelBuilder.Entity<PeliculaConConteos>().HasNoKey().ToTable(name: null);
 
             modelBuilder.HasDbFunction(() => PeliculaConConteos(0));
-
+            // configura la conveccion de las propiedades de cualquier modelo
+            // si esta tiene URL se declaro como UNI CODE
             foreach (var tipoEntidad in modelBuilder.Model.GetEntityTypes())
             {
                 foreach (var propiedad in tipoEntidad.GetProperties())

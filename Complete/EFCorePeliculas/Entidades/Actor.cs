@@ -2,6 +2,7 @@
 
 namespace EFCorePeliculas.Entidades
 {
+    // [NotMapped] This will ignore for mapped in the data base
     public class Actor
     {
         public int Id { get; set; }
@@ -25,7 +26,7 @@ namespace EFCorePeliculas.Entidades
         public DateTime? FechaNacimiento { get; set; }
         public HashSet<PeliculaActor> PeliculasActores { get; set; }
         public string FotoURL { get; set; }
-        // no mapea la propiedad en la base de datos
+        // no mapea la propiedad en la base de datos y esta sera ignorada
         [NotMapped]
         public int? Edad
         {

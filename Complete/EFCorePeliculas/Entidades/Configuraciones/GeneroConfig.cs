@@ -27,9 +27,12 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             // Donde todas las conculstas se aplicara el
             // Where(g => !g.EstaBorrado)
             builder.HasQueryFilter(g => !g.EstaBorrado);
-            // es unico si EstaBorrado = 'false'
+            // El indice sera aplicado si el el filtro es  unico si EstaBorrado = 'false'
             builder.HasIndex(g => g.Nombre).IsUnique().HasFilter("EstaBorrado = 'false'");
-            // 
+            // Propiead sombre cual este no estara mapeada en el Entity pero si estara en la base de datos
+            // esta propiedad sirve para no perjudircar con la entidad y puede ser consultada con:
+            // EF.Property<DateTime>(g, "FechaCreacion")
+            // context.Entry(genero).Property<DateTime>("FechaCreacion").CurrentValue;
             builder.Property<DateTime>("FechaCreacion").HasDefaultValueSql("GetDate()").HasColumnType("datetime2");
         }
     }

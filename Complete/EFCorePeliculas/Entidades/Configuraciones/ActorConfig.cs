@@ -12,7 +12,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                .IsRequired();
 
             builder.Property(x => x.Nombre).HasField("_nombre");
-            // COnfiguracion de clase por propiedad 
+            // Ignorar una propiedad que esta no se mapee en la base de datos
             //builder.Ignore(a => a.Edad);
             //builder.Ignore(a => a.Direccion);
             // Configurar las Entidades de propiedad 

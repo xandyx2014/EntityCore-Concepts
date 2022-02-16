@@ -14,7 +14,7 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             builder.Property(prop => prop.TipoSalaDeCine)
                 // Colocamos el default Value en este caso le colocamos un Enum
                 .HasDefaultValue(TipoSalaDeCine.DosDimensiones)
-                // conversacion a un tipo
+                // Convierte  el string ya sea en el set o get de la base de datos
                 .HasConversion<string>();
 
             builder.Property(prop => prop.Moneda)

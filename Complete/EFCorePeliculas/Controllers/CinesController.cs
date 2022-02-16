@@ -27,7 +27,7 @@ namespace EFCorePeliculas.Controllers
             this.mapper = mapper;
             this.actualizadorObservableCollection = actualizadorObservableCollection;
         }
-
+        // REQUEST from Class KeyLess
         [HttpGet("SinUbicacion")]
         public async Task<IEnumerable<CineSinUbicacion>> GetCinesSinUbicacion()
         {
