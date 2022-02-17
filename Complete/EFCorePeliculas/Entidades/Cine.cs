@@ -16,6 +16,7 @@ namespace EFCorePeliculas.Entidades
         private CineOferta _cineOferta;
         public CineOferta CineOferta { get => _cineOferta; set => Set(value, ref _cineOferta); }
         public ObservableCollection<SalaDeCine> SalasDeCine { get; set; }
+        // esta propiedad se esta utilizando como division de tablas
         private CineDetalle _cineDetalle;
         public CineDetalle CineDetalle { get => _cineDetalle; set => Set(value, ref _cineDetalle); }
         private Direccion _direccion;

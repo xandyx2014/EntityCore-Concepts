@@ -126,9 +126,9 @@ namespace EFCorePeliculas
                     }
                 }
             }
-            // herencia por tipo por cada herencia se creara una nueva tabla
+            // HERENCIA POR TIPO por cada herencia se creara una nueva tabla
             modelBuilder.Entity<Merchandising>().ToTable("Merchandising");
-            // herencia por tipo por cada herencia se creara una nueva tabla
+            // HERENCIA POR TIPO por cada herencia se creara una nueva tabla
             modelBuilder.Entity<PeliculaAlquilable>().ToTable("PeliculasAlquilables");
 
             var pelicula1 = new PeliculaAlquilable()

@@ -7,9 +7,14 @@ namespace EFCorePeliculas.Entidades.Configuraciones
     {
         public void Configure(EntityTypeBuilder<Pago> builder)
         {
+            // TABLA POR HERENQUIA
+
             // Se configura la clase  para acceder a las clases derivadas
             // el descriminador es el tipo que seleccionara que clase derivada se usara
             // esta propiedad decide cual clase heredada se usara
+            // para poder estarer el datoe s necesario pasarle el tipo 
+            //  await context.Pagos.OfType<PagoTarjeta>().ToListAsync();
+            //  await context.Pagos.OfType<PagoPaypal>().ToListAsync();
             builder.HasDiscriminator(p => p.TipoPago)
                 // Si El TipoPago es Paypal, entonces devolvera una Entidad PagoPaypal
                 .HasValue<PagoPaypal>(TipoPago.Paypal)

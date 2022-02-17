@@ -32,10 +32,11 @@ namespace EFCorePeliculas.Entidades.Configuraciones
                 // Set Null: colocamos null en la llave foraneas
                 // Client Set Null: Realizamos el Client set null desde el lado del cliente (es necesario tener las dependencias cargadas )
                 .OnDelete(DeleteBehavior.Cascade);
+            // CONFIGURACION para division de tablas
             // 1 Cine Tiene 1 CineDetalle y 1 CineDetalle 1 Cine 
             builder.HasOne(c => c.CineDetalle).WithOne(cd => cd.Cine)
                 .HasForeignKey<CineDetalle>(cd => cd.Id);
-            // Configurar las Entidades de propiedad 
+            // Configurar los nombres de las las Entidades de propiedad 
             // Configurarmos el nombre por default 
             builder.OwnsOne(c => c.Direccion, dir =>
             {
