@@ -66,9 +66,11 @@ namespace EFCorePeliculas
         }
         // Configurando el Db context 
         // se puede pasar el nombre de DefaultConnection de appsettings.json
+        // se puede pasar configuracion extra 
+        //
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // verifica si esta la configuracion 
+            // verifica si esta la configuracion o existe una configracuib orevua
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("name=DefaultConnection", opciones =>
