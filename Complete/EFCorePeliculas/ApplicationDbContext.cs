@@ -121,6 +121,7 @@ namespace EFCorePeliculas
             {
                 foreach (var property in tipoEntidad.GetProperties())
                 {
+                    // verifica la que propiedad URL existe en las props de las entidades
                     if (property.ClrType == typeof(string) && property.Name.Contains("URL", StringComparison.CurrentCultureIgnoreCase))
                     {
                         property.SetIsUnicode(false);
