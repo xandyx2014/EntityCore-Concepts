@@ -56,7 +56,7 @@ namespace EFCorePeliculas.Controllers
 
             return peliculaDTO;
         }
-        // Consulta Difereida
+        // Consulta Diferida
         [HttpGet("filtrar")]
         public async Task<ActionResult<List<PeliculaDTO>>> Filtrar(
                 [FromQuery] PeliculasFiltroDTO peliculasFiltroDTO)
