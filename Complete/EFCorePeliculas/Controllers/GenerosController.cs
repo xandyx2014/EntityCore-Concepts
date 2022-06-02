@@ -303,6 +303,7 @@ namespace EFCorePeliculas.Controllers
         }
 
         //  Actualizacion de registro en MODO CONECTADO (Modo conectado esta por default en EC)
+        // Modo conectado usamos la misma instancia de db context para consultar y actualizar
         [HttpPost("agregar2")]
         public async Task<ActionResult> Agregar2(int id)
         {
@@ -347,11 +348,11 @@ namespace EFCorePeliculas.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-
+        // Filtros A Nivel del Modelo
         [HttpPost("Restaurar/{id:int}")]
         public async Task<ActionResult> Restaurar(int id)
         {
-            // ignora las query puesta desde el modelo
+            // ignora las query puesta desde el modelo configuradadas desde API Fluent
             // .IgnoreQueryFilters()
             var genero = await context.Generos.AsTracking()
                 .IgnoreQueryFilters()

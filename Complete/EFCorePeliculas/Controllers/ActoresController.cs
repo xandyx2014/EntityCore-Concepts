@@ -72,7 +72,7 @@ namespace EFCorePeliculas.Controllers
             var actor = mapper.Map<Actor>(actorCreacionDTO);
             actor.Id = id;
 
-            //context.Update(actor);
+            // context.Update(actor);
 
             context.Entry(actor).Property(a => a.Nombre).IsModified = true;
 

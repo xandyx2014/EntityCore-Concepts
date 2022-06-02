@@ -63,7 +63,7 @@ namespace EFCorePeliculas.Controllers
 
             return Ok(cines);
         }
-
+        // Insertar Registros con Data relacionada nueva
         [HttpPost]
         public async Task<ActionResult> Post()
         {

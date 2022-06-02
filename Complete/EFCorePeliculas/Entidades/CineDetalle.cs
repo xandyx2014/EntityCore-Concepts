@@ -2,11 +2,11 @@
 
 namespace EFCorePeliculas.Entidades
 {
-    // Esta clase se esta utilizando como division de clases
+    // Esta clase se esta utilizando como division de clases Table Spliting
     public class CineDetalle
     {
         public int Id { get; set; }
-        // es necesarioq ue teng un campo requerido
+        // En Table Spliting es necesarioq ue teng un campo requerido
         [Required]
         public string Historia { get; set; }
         public string Valores { get; set; }

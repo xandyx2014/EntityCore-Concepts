@@ -33,13 +33,15 @@ namespace EFCorePeliculas.Controllers
 
             return resultado;
         }
-
+        // Eager Loading
         [HttpGet("{id:int}")]
         public async Task<ActionResult<PeliculaDTO>> Get(int id)
         {
             var pelicula = await context.Peliculas
                 .Include(p => p.Generos.OrderByDescending(g => g.Nombre))
                 .Include(p => p.SalasDeCine)
+                    // Then Include llama del SalasDeCine el Cine
+                    // Esto Permite Entrar al Modelo de Datos De Salas De Cine
                     .ThenInclude(s => s.Cine)
                 .Include(p => p.PeliculasActores.Where(pa => pa.Actor.FechaNacimiento.Value.Year >= 1980))
                     .ThenInclude(pa => pa.Actor)
@@ -109,6 +111,26 @@ namespace EFCorePeliculas.Controllers
 
             context.Add(pelicula);
             await context.SaveChangesAsync();
+            return Ok();
+        }
+        [HttpGet("cargadoSelectivo/{id:int}")]
+        public async Task<ActionResult> GetSelectivo(int id)
+        {
+            var pelicula = await context.Peliculas.Select(p =>
+                new
+                {
+                    Id = p.Id,
+                    Titulo = p.Titulo,
+                    Generos = p.Generos.OrderByDescending(g => g.Nombre).Select(g => g.Nombre).ToList(),
+                    CantidadActores = p.PeliculasActores.Count(),
+                    CantidadCines = p.SalasDeCine.Select(s => s.Id).Distinct().Count()
+                }
+            ).FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pelicula is null)
+            {
+                return NotFound();
+            }
             return Ok();
         }
     }

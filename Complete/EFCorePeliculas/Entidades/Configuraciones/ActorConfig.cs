@@ -15,6 +15,10 @@ namespace EFCorePeliculas.Entidades.Configuraciones
             // Ignorar una propiedad que esta no se mapee en la base de datos
             //builder.Ignore(a => a.Edad);
             //builder.Ignore(a => a.Direccion);
+
+
+
+
             // Configurar las Entidades de propiedad 
             // Configurarmos el nombre por default 
             builder.OwnsOne(a => a.DireccionHogar, dir =>
